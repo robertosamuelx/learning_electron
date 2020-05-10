@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css"/>
+    <title>Learning Electron</title>
+</head>
+<body>
+    <script>
+         const { ipcRenderer } = require('electron')
+        const updateOnlineStatus = () => {
+            ipcRenderer.send('online-status-changed', navigator.onLine ? 'online' : 'offline')
+        }
+         window.addEventListener('online',  updateOnlineStatus)
+        window.addEventListener('offline',  updateOnlineStatus)
+    </script>
+
+<a href="#" id="drag">item</a>
+<script type="text/javascript" charset="utf-8">
+  document.getElementById('drag').ondragstart = (event) => {
+    event.preventDefault()
+    ipcRenderer.send('ondragstart', 'C:/Users/rober/workspace/learningElectron/src/files')
+  }
+</script>
+
+
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+</body>
+</html>
